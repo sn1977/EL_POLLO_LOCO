@@ -16,7 +16,7 @@ class StatusBarCoin extends DrawableObject {
         this.y = 80;
         this.width = 200;
         this.height = 60;
-        this.setAmountCoins();
+        this.setAmountCoins(0);
     }
 
     setAmountCoins(amountCoins) {
@@ -28,15 +28,15 @@ class StatusBarCoin extends DrawableObject {
     resolveImageIndex() {
         if (this.amountCoins == 100) {
             return 5;
-        } else if (this.amountCoins > 80) {
+        } else if (this.amountCoins >= 80) {
             return 4;
-        } else if (this.amountCoins > 60) {
+        } else if (this.amountCoins >= 60) {
             return 3;
-        } else if (this.amountCoins > 40) {
+        } else if (this.amountCoins >= 40) {
             return 2;
-        } else if (this.amountCoins > 20) {
+        } else if (this.amountCoins >= 20) {
             return 1;
-        } else
+        } else 
             return 0;
     }
 }
