@@ -57,11 +57,21 @@ for (let repeat = 0; repeat < repeats; repeat++) {
     }
 }
 
+const coins = [];
+for (let i = 0; i < 15; i++) {
+    coins.push(new Coin());
+}
+
+const bottles = [];
+for (let i = 0; i < 20; i++) {
+    bottles.push(new Bottle());
+}
+
 const level1 = new Level(
     [new Chicken(), new Chicken(), new Chicken(), new Endboss()],
     [new Cloud()],
     backgroundObjects,
-    [new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin()]
+    coins,
+    bottles
 );
 
-   

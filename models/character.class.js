@@ -89,4 +89,12 @@ class Character extends MovableObject {
             }
         }, 50);
     }
+
+    collect() {
+        this.collectingObject += 10;
+        if (this.collectingObject > 100) {
+            this.collectingObject = 100;
+        }
+    }
+
 }

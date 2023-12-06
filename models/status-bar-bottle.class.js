@@ -17,11 +17,11 @@ class StatusBarBottle extends DrawableObject {
         this.y = 0;
         this.width = 200;
         this.height = 60;
-        this.setAmountBottles();
+        this.setAmountBottles(0);
     }
 
     setAmountBottles(amountBottles) {
-        this.amountCoins = amountBottles; // => 0 ... 5 ermitteln, wegen Bilder im Array!
+        this.amountBottles = amountBottles; 
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
@@ -29,13 +29,13 @@ class StatusBarBottle extends DrawableObject {
     resolveImageIndex() {
         if (this.amountBottles == 100) {
             return 5;
-        } else if (this.amountBottles > 80) {
+        } else if (this.amountBottles >= 80) {
             return 4;
-        } else if (this.amountBottles > 60) {
+        } else if (this.amountBottles >= 60) {
             return 3;
-        } else if (this.amountBottles > 40) {
+        } else if (this.amountBottles >= 40) {
             return 2;
-        } else if (this.amountBottles > 20) {
+        } else if (this.amountBottles >= 20) {
             return 1;
         } else
             return 0;

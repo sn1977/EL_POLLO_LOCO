@@ -28,7 +28,8 @@ class MovableObject extends DrawableObject {
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
-            this.x < mo.y + mo.height;
+            this.x < mo.x + mo.width &&
+            this.y < mo.y + mo.height;
     }
 
     hit() {
@@ -49,14 +50,7 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
-
-    collect() {
-        this.collectingObject += 10;
-        if (this.collectingObject = 100) {
-            this.collectingObject = 100;
-        } 
-    }
-
+    
     moveRight() {
         this.x += this.speed;
     }
