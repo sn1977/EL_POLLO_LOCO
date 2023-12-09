@@ -87,26 +87,30 @@ class World {
     //     }
     // }
 
-    collisionsWithObjects(objects, collectCallback, updateStatusBar) {
+    collisionsWithObjects(objects, statusBar, updateStatusBar) {
         let objectsToRemove = [];
 
         objects.forEach((object, index) => {
             if (this.character.isColliding(object)) {
-                collectCallback.call(this.character);
-                updateStatusBar.call(this.statusBar, this.character.collectingObject);
-                objectsToRemove.push(index);
+                this.character.collect();
+                updateStatusBar.call(statusBar, this.character.collectingObject); // Verwenden des übergebenen statusBar-Objekts
+                // updateStatusBar(this.character.collectingObject);
+                // this.statusBarCoin.setAmountCoins.call(this.statusBarCoin, this.character.collectingObject);
+                // this.statusBarBottle.setAmountBottles(this.character.collectingObject);
+                objects.splice(index);
+                // objectsToRemove.push(index);
             }
         });
 
-        for (let i = objectsToRemove.length - 1; i >= 0; i--) {
-            objects.splice(objectsToRemove[i], 1);
-        }
+        // for (let i = objectsToRemove.length - 1; i >= 0; i--) {
+        //     objects.splice(objectsToRemove[i], 1);
+        // }
     }
 
     collisionsCoins() {
         this.collisionsWithObjects(
             this.level.coins,
-            this.character.collect,
+            this.statusBarCoin,
             this.statusBarCoin.setAmountCoins
         );
     }
@@ -114,19 +118,19 @@ class World {
     collisionsBottles() {
         this.collisionsWithObjects(
             this.level.bottles,
-            this.character.collect,
+            this.statusBarBottle, // Übergeben des statusBarBottles Objekts
             this.statusBarBottle.setAmountBottles
         );
     }
 
-
-
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.statusBarBottle.amountBottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.statusBarBottle.setAmountBottles(this.statusBarBottle.amountBottles - 10); // Reduzieren der Anzahl der Flaschen
         }
     }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

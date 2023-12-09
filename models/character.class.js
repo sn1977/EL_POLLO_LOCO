@@ -2,6 +2,7 @@ class Character extends MovableObject {
     height = 300;
     y = 132;
     speed = 10;
+    collectingObject = 0;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -49,6 +50,9 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
+        // this.collectingObject = 0;
+        // this.lastCollectTime = 0;
+        // this.collectCooldown = 100; // Millisekunden
     }
 
     animate() {
@@ -96,5 +100,4 @@ class Character extends MovableObject {
             this.collectingObject = 100;
         }
     }
-
 }

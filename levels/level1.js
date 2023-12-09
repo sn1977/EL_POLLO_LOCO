@@ -68,7 +68,7 @@ for (let i = 0; i < 20; i++) {
 }
 
 const level1 = new Level(
-    [new Chicken(), new Chicken(), new Chicken(), new Endboss()],
+    [ new Endboss()],
     [new Cloud()],
     backgroundObjects,
     coins,
